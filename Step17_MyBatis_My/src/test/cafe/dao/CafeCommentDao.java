@@ -66,12 +66,16 @@ public class CafeCommentDao {
 		return list;
 	}
 	//댓글을 삭제하는 메소드
-	public boolean delete(int num) {
+	public boolean delete(CafeCommentDto dto) {
 		SqlSession session = null;
 		int flag = 0;
 		try {
 			session = factory.openSession(true);
-			flag = session.delete("cafeComment.delete", num);
+			if(dto.getComment_group()==dto.getNum()) {
+				flag = session.delete("cafeComment.deleteO", dto);
+			} else {
+				flag = session.delete("cafeComment.deleteR", dto);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

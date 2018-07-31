@@ -75,45 +75,55 @@
 <div class="comments">
 	<div class="comment_form">
 		<form action="private/comment_insert.do" method="post">
-			<input type="hidden"  name="writer" id="writer" value="${id}"/>
-			<input type="hidden" name="ref_group" id="ref_group" value="${dto.num}"/>
-			<input type="hidden" name="target_id" id="target_id" value="${dto.writer}"/>
-			<textarea name="content" id="" cols="100%" rows="3"></textarea>
+			<input type="hidden" name="writer" value="${id}"/>
+			<input type="hidden" name="ref_group" value="${dto.num}"/>
+			<input type="hidden" name="target_id" value="${dto.writer}"/>
+			<textarea name="content" cols="100%" rows="3"></textarea>
 			<button type="submit">등록</button>
 		</form>
 	</div>
 	<c:forEach var="tmp" items="${commentList}">
-		<div class="comment" <c:if test="${tmp.num ne tmp.comment_group}">style="margin-left: 30px;"</c:if>>
-			<c:if test="${tmp.num ne tmp.comment_group}">
-				<img src="${pageContext.request.contextPath}/resources/images/re.gif" alt="" class="reply_icon"/>
-				<i class="muted">${tmp.target_id}</i>
-			</c:if>
-			<img src="${pageContext.request.contextPath}/resources/images/user_image.gif" alt="" />
-			<span>${tmp.writer}</span>
-			<span>${tmp.regdate}</span>
-			<a href="javascript:" class="reply_link">답글</a>
-			<c:choose>
-				<c:when test="${sessionScope.id eq tmp.writer}">
-					<a href="private/comment_update.do?num=${tmp.num}&ref_group=${tmp.ref_group}">수정</a>
-					<a href="private/comment_delete.do?num=${tmp.num}&ref_group=${tmp.ref_group}">삭제</a>
-				</c:when>
-				<c:otherwise>
-					<a href="">신고</a>
-				</c:otherwise>
-			</c:choose>
-			<pre>${tmp.content}</pre>
-			<form action="private/comment_insert.do" method="post">
-				<!-- 덧글 작성자 -->
-				<input type="hidden" name="writer" value="${id}"/>
-				<!-- 덧글 그룹 -->
-				<input type="hidden" name="ref_group" value="${dto.num}" />
-				<!-- 덧글 대상 -->
-				<input type="hidden" name="target_id" value="${tmp.writer}" />
-				<input type="hidden" name="comment_group" value="${tmp.comment_group}" />
-				<textarea name="content"></textarea>
-				<button type="submit">등록</button>
-			</form>
-		</div>
+		<c:choose>
+			<c:when test="${tmp.deleted eq 'Y'}">
+				<div class="comment">
+					<pre>${tmp.content}</pre>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="comment" <c:if test="${tmp.num ne tmp.comment_group}">style="margin-left: 30px;"</c:if>>
+					<c:if test="${tmp.num ne tmp.comment_group}">
+						<img src="${pageContext.request.contextPath}/resources/images/re.gif" alt="" class="reply_icon"/>
+						<i class="muted">${tmp.target_id}</i>
+					</c:if>
+					<img src="${pageContext.request.contextPath}/resources/images/user_image.gif" alt="" />
+					<span>${tmp.writer}</span>
+					<span>${tmp.regdate}</span>
+					<a href="javascript:" class="reply_link">답글</a>
+					<c:choose>
+						<c:when test="${sessionScope.id eq tmp.writer}">
+							<a href="jacascript:">수정</a>
+							<a href="private/comment_delete.do?num=${tmp.num}&comment_group=${tmp.comment_group}&ref_group=${tmp.ref_group}">삭제</a>
+						</c:when>
+						<c:otherwise>
+							<a href="">신고</a>
+						</c:otherwise>
+					</c:choose>
+					<pre>${tmp.content}</pre>
+					<form action="private/comment_insert.do" method="post">
+						<!-- 덧글 작성자 -->
+						<input type="hidden" name="writer" value="${id}"/>
+						<!-- 덧글 그룹 -->
+						<input type="hidden" name="ref_group" value="${dto.num}" />
+						<!-- 덧글 대상 -->
+						<input type="hidden" name="target_id" value="${tmp.writer}" />
+						<input type="hidden" name="comment_group" value="${tmp.comment_group}" />
+						<textarea name="content"></textarea>
+						<button type="submit">등록</button>
+					</form>
+				</div>
+			</c:otherwise>
+		</c:choose>
+		
 	</c:forEach>
 </div>
 <script>
