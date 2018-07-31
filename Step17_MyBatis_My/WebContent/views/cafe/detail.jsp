@@ -18,11 +18,22 @@
 	}
 	.comment {
 		position: relative;
+		width: 768px;
 	}
 	.comment form {
 		display: none;
 	}
 	.comment .reply_icon {
+		width: 8px;
+		height: 8px;
+		position: absolute;
+		top: 0px;
+		left: -12px;
+	}
+	.insert {
+		position: relative;
+	}
+	.insert .reply_icon {
 		width: 8px;
 		height: 8px;
 		position: absolute;
@@ -109,7 +120,8 @@
 						</c:otherwise>
 					</c:choose>
 					<pre>${tmp.content}</pre>
-					<form action="private/comment_insert.do" method="post">
+					<form action="private/comment_insert.do" method="post" class="insert" style="margin-left: 30px;">
+						<img src="${pageContext.request.contextPath}/resources/images/re.gif" alt="" class="reply_icon"/>
 						<!-- 덧글 작성자 -->
 						<input type="hidden" name="writer" value="${id}"/>
 						<!-- 덧글 그룹 -->
@@ -117,8 +129,13 @@
 						<!-- 덧글 대상 -->
 						<input type="hidden" name="target_id" value="${tmp.writer}" />
 						<input type="hidden" name="comment_group" value="${tmp.comment_group}" />
-						<textarea name="content"></textarea>
+						<textarea name="content" cols="100%" rows="3"></textarea>
 						<button type="submit">등록</button>
+					</form>
+					<form action="private/comment_update.do" method="post" class="update">
+						<input type="hidden" name="num" value="${tmp.num}"/>
+						<textarea name="content" cols="100%" rows="3">${tmp.content}</textarea>
+						<button type="submit">수정</button>
 					</form>
 				</div>
 			</c:otherwise>
@@ -158,7 +175,19 @@
 		}
 	});
 	$(".comment .reply_link").click(function() {
-		$(this).parent().find("form").slideToggle(200);
+		$(".insert").slideToggle(200);
+	});
+	$(".comment .reply_update").click(function() {
+		if($(this).text()=="수정") {
+			$(this).text("취소");
+			$(this).parent().find("pre").hide();
+		} else {
+			$(this).text("수정");
+			$(this).parent().find("pre").show();
+		}
+	});
+	$(".comment .reply_update").click(function() {
+		$(this).parent().find(".update").toggle();
 	});
 </script>
 </body>

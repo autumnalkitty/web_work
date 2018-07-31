@@ -28,7 +28,7 @@
 		DELETE FROM board_cafe_comment 
 		WHERE num=#{num}
 	</delete>
-	<update id="update" parameterType="commentDto" >
+	<update id="update" parameterType="commentDto">
 		UPDATE board_cafe_comment 
 		SET content=#{content} 
 		WHERE num=#{num}
