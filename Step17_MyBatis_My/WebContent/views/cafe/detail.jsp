@@ -101,8 +101,8 @@
 					<a href="javascript:" class="reply_link">답글</a>
 					<c:choose>
 						<c:when test="${sessionScope.id eq tmp.writer}">
-							<a href="jacascript:">수정</a>
-							<a href="private/comment_delete.do?num=${tmp.num}&comment_group=${tmp.comment_group}&ref_group=${tmp.ref_group}">삭제</a>
+							<a href="javascript:" class="reply_update">수정</a>
+							<a href="javascript:deleteConfirmR(${tmp.num}, ${tmp.comment_group})">삭제</a>
 						</c:when>
 						<c:otherwise>
 							<a href="">신고</a>
@@ -133,6 +133,12 @@
 			location.href="private/delete.do?num=${dto.num}";
 		}
 	}
+	function deleteConfirmR(num, commentGroup) {
+		var isDelete=confirm("댓글을 삭제하시겠습니까?");
+		if(isDelete) {
+			location.href="private/comment_delete.do?num="+num+"&comment_group="+commentGroup+"&ref_group=${dto.num}"
+		}
+	}
 	var isSignin=${isSignin};
 	$(".comment_form > form, .comment > form").submit(function() {
 		if(!isSignin) {
@@ -144,7 +150,7 @@
 		}
 	});
 	//답글 링크를 눌렀을 때
-	$(".comment .reply_link").click(function(){
+	$(".comment .reply_link").click(function() {
 		if($(this).text()=="답글") {
 			$(this).text("취소");
 		} else {

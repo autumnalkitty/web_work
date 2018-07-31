@@ -87,4 +87,22 @@ public class CafeCommentDao {
 			return false;
 		}
 	}
+	//댓글을 수정하는 메소드
+	public boolean update(CafeCommentDto dto) {
+		SqlSession session=null;
+		int flag=0;
+		try {
+			session=factory.openSession(true);
+			flag=session.update("cafeComment.update", dto);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		if(flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
