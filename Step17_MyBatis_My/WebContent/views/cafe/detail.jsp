@@ -175,7 +175,7 @@
 		}
 	});
 	$(".comment .reply_link").click(function() {
-		$(".insert").slideToggle(200);
+		$(this).parent().find(".insert").slideToggle(200);
 	});
 	$(".comment .reply_update").click(function() {
 		if($(this).text()=="수정") {
