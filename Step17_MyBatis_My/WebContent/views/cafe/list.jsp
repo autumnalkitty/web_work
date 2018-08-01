@@ -35,7 +35,9 @@
 			<c:forEach var="tmp" items="${list}">
 			<tr>
 				<td>${tmp.num}</td>
-				<td><a href="detail.do?num=${tmp.num}&condition=${condition}&keyword=${keyword}">${tmp.title}</a></td>
+				<td>
+					<a href="detail.do?num=${tmp.num}&condition=${condition}&keyword=${keyword}">${tmp.title}</a><c:if test="${tmp.commentCount ne 0}"><strong>[${tmp.commentCount}]</strong></c:if>
+				</td>
 				<td>${tmp.writer}</td>
 				<td>${tmp.viewCount}</td>				
 				<td>${tmp.regdate}</td>

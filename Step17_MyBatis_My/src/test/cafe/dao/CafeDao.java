@@ -118,7 +118,7 @@ public class CafeDao {
 	}
 	//글 조회수 올리는 메소드
 	public void addViewCount(int num) {
-		SqlSession  session=null;
+		SqlSession session=null;
 		try {
 			session=factory.openSession(true);
 			session.update("cafe.addViewCount", num);
@@ -127,5 +127,18 @@ public class CafeDao {
 		} finally {
 			session.close();
 		}
+	}
+	//댓글 개수를 리턴하는 메소드
+	public int getCommentCount(int num) {
+		SqlSession session=factory.openSession();
+		int commentCount=0;
+		try {
+			commentCount=session.selectOne("cafe.getCommentCount", num);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return commentCount;
 	}
 }

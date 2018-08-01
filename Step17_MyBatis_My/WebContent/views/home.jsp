@@ -20,6 +20,7 @@
 	<li><a href="member/list.do">회원 목록 보기</a></li>
 	<li><a href="file/list.do">자료실 목록 보기</a></li>
 	<li><a href="cafe/list.do">카페글 목록 보기</a></li>
+	<li><a href="gallery/list.do">사진첩 목록 보기</a></li>
 </ul>
 <h3>오늘의 공지사항</h3>
 <ul>

@@ -70,6 +70,11 @@ public class CafeListAction extends Action {
 		dto.setEndRowNum(endRowNum);
 		//CafeDto 객체를 전달해서 파일목록을 불러온다.
 		List<CafeDto> list=CafeDao.getInstance().getList(dto);
+		for(CafeDto tmp:list) {
+			int num=tmp.getNum();
+			int commentCount=CafeDao.getInstance().getCommentCount(num);
+			tmp.setCommentCount(commentCount);
+		}
 		request.setAttribute("list", list);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("startPageNum", startPageNum);

@@ -78,4 +78,11 @@
 		SET viewCount=viewCount+1 
 		WHERE num=#{num}
 	</update>
+	<select id="getCommentCount" parameterType="int" resultType="int">
+		SELECT COUNT(co.num) 
+		FROM board_cafe ca, board_cafe_comment co 
+		WHERE ca.num=co.ref_group 
+		AND co.deleted='N' 
+		AND ca.num=#{num}
+	</select>
 </mapper>

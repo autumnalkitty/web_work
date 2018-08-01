@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  1. javax.servlet.Filter 인터페이스를 구현한다.
  2. Filter 의 동작을 맵핑한다.
 */
-@WebFilter({"/users/private/*", "/file/private/*", "/cafe/private/*"})
+@WebFilter({"/users/private/*", "/file/private/*", "/cafe/private/*", "/gallery/private/*"})
 public class SigninFilter implements Filter {
 	@Override
 	public void destroy() {

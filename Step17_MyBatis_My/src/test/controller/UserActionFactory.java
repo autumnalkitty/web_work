@@ -16,6 +16,10 @@ import test.file.action.FileDownloadAction;
 import test.file.action.FileListAction;
 import test.file.action.FileUploadAction;
 import test.file.action.FileUploadFormAction;
+import test.gallery.action.GalleryDeleteAction;
+import test.gallery.action.GalleryListAction;
+import test.gallery.action.GalleryUploadAction;
+import test.gallery.action.GalleryUploadFormAction;
 import test.member.action.MemberDeleteAction;
 import test.member.action.MemberInsertAction;
 import test.member.action.MemberInsertformAction;
@@ -111,6 +115,14 @@ public class UserActionFactory {
 			action=new CafeCommentDeleteAction();
 		} else if (command.equals("/cafe/private/comment_update")) {
 			action=new CafeCommentUpdateAction();
+		} else if (command.equals("/gallery/list")) {
+			action=new GalleryListAction();
+		} else if (command.equals("/gallery/private/uploadform")) {
+			action=new GalleryUploadFormAction();
+		} else if (command.equals("/gallery/private/upload")) {
+			action=new GalleryUploadAction();
+		} else if (command.equals("/gallery/private/delete")) {
+			action=new GalleryDeleteAction();
 		}
  		return action;
 	}

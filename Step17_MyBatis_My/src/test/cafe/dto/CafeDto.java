@@ -7,13 +7,14 @@ public class CafeDto {
 	private String content;
 	private int viewCount;
 	private String regdate;
+	private int commentCount;
 	private int startRowNum;
 	private int endRowNum;
 	private int prevNum;
 	private int nextNum;
 	//디폴트 생성자
 	public CafeDto() {}
-	public CafeDto(int num, String writer, String title, String content, int viewCount, String regdate, int startRowNum,
+	public CafeDto(int num, String writer, String title, String content, int viewCount, String regdate, int commentCount, int startRowNum,
 			int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.num = num;
@@ -22,6 +23,7 @@ public class CafeDto {
 		this.content = content;
 		this.viewCount = viewCount;
 		this.regdate = regdate;
+		this.commentCount = commentCount;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
 		this.prevNum = prevNum;
@@ -62,6 +64,12 @@ public class CafeDto {
 	}
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
+	}
+	public int getCommentCount() {
+		return commentCount;
+	}
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
 	}
 	public int getStartRowNum() {
 		return startRowNum;
