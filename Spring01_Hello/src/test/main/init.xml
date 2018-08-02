@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- new WeaponImpl() 해서 객체를 컨테이너에서 관리하고 myWeapon 이라는 id 로 찾아서 쓸 수 있게 설정 -->
+	<bean id="myWeapon" class="test.mypac.WeaponImpl"></bean>
+	<!-- new CarImpl() 해서 객체를 컨테이너에서 관리하고 id 는 미부여 -->
+	<bean class="test.mypac.CarImpl"></bean>
+</beans>
