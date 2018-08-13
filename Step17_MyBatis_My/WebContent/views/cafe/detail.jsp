@@ -107,7 +107,7 @@
 							<img src="${pageContext.request.contextPath}/resources/images/re.gif" alt="" class="reply_icon"/>
 							<i class="muted">${tmp.target_id}</i>
 						</c:if>
-						<img src="${pageContext.request.contextPath}/resources/images/user_image.gif" alt="" />
+						<img src="${pageContext.request.contextPath}/resources/images/user_image.gif" alt=""/>
 						<span>${tmp.writer}</span>
 						<span>${tmp.regdate}</span>
 						<a href="javascript:" class="reply_link">답글</a>
@@ -126,10 +126,10 @@
 							<!-- 덧글 작성자 -->
 							<input type="hidden" name="writer" value="${id}"/>
 							<!-- 덧글 그룹 -->
-							<input type="hidden" name="ref_group" value="${dto.num}" />
+							<input type="hidden" name="ref_group" value="${dto.num}"/>
 							<!-- 덧글 대상 -->
-							<input type="hidden" name="target_id" value="${tmp.writer}" />
-							<input type="hidden" name="comment_group" value="${tmp.comment_group}" />
+							<input type="hidden" name="target_id" value="${tmp.writer}"/>
+							<input type="hidden" name="comment_group" value="${tmp.comment_group}"/>
 							<textarea name="content" cols="100%" rows="3"></textarea>
 							<button type="submit">등록</button>
 						</form>
